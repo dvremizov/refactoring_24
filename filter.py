@@ -26,3 +26,5 @@ while i < a - 5:
     i = i + 10
 res = Image.fromarray(arr)
 res.save('res.jpg')
+
+#test
