@@ -16,19 +16,11 @@ class Mozabrick:
                 self.color_pixels(i, j, medium_brightness);
         return Image.fromarray(self.pixels);
 
-    def color_pixels(self, currentI, currentJ, medium_brightness):
-        for x in range(currentI, currentI + self.size):
-            for y in range(currentJ, currentJ + self.size):
-                for channel in range(3):
-                    self.pixels[x][y][channel] = medium_brightness // self.step * self.step // 3;
+    def color_pixels(self, i, j, medium_brightness):
+        self.pixels[i : i + self.size, j : j + self.size] = medium_brightness // self.step * self.step // 3;
 
-    def get_medium_brightness(self, currentI, currentJ):
-        sumRgb = 0;
-        for x in range(currentI, currentI + self.size):
-            for y in range(currentJ, currentJ + self.size):
-                pixel = self.pixels[x][y];
-                sumRgb += sum(pixel);
-
+    def get_medium_brightness(self, i, j):
+        sumRgb = self.pixels[i : i + self.size, j : j + self.size].sum();
         return int(sumRgb // (self.size ** 2));
 
 
