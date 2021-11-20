@@ -5,9 +5,9 @@ arr = np.array(img)
 a = len(arr)
 a1 = len(arr[1])
 i = 0
-while i < a - 11:
+while i < a - 5:
     j = 0
-    while j < a1 - 11:
+    while j < a1 - 5:
         s = 0
         for n in range(i, i + 10):
             for n1 in range(j, j + 10):
