@@ -24,7 +24,8 @@ class Mozabrick:
         return int(sumRgb // (self.size ** 2));
 
 
-img = Image.open("img2.jpg")
-pixels = np.array(img)
+inputImg = Image.open(input("Введите полный путь обрабатываемого изображения: "));
+outputNameImg = input("Введите имя нового изображения: ");
+pixels = np.array(inputImg);
 result = Mozabrick(pixels, 10, 50).image_processing();
-result.save('res.jpg')
+result.save(outputNameImg);
