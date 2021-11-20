@@ -4,22 +4,22 @@
 
 Один из проектов, [mozabrick](https://mozabrick.ru/products/model-l/), например, предлагает что-то типа мозайки из квадратиков 5 градаций серого, из которой можно собрать любую фотографию.
 
-![Преобразование](https://github.com/bibilov/refactoring/blob/main/img-test.png)
+![Преобразование](images/img-test.png)
 
 С помощью приложения вы накладываете фильтр, получаете черно-белый пиксель-арт, который можно набрать уже мозаикой.
 
 Иногда делают такие панно прямо на зданиях.
 
-![Здание](https://github.com/bibilov/refactoring/blob/main/632.jpg)
+![Здание](images/632.jpg)
 
 
 Вот я прогнал через фильтр свое фото:
 
-![Фото с фильтром](https://github.com/bibilov/refactoring/blob/main/m0oLR8Tx0zRG8s3SZQlQLnF8bhcnGu6AwzRA5aqi.png_4_1.png)
+![Фото с фильтром](images/m0oLR8Tx0zRG8s3SZQlQLnF8bhcnGu6AwzRA5aqi.png_4_1.png)
 
 Вот так примерно выглядит процесс сборки панно:
 
-![Сборка](https://github.com/bibilov/refactoring/blob/main/compile.png)
+![Сборка](images/compile.png)
 
 Естественно, появилось желание написать вручную такой фильтр. Он может понадобится для пиксель-арта, создания игр с анимацией а-ля ранний Mortal Kombat, японских кроссвордов или для вязки свитеров ближе к НГ. Для чтения-записи изображений используется библиотека `pillow`, для всех остальных манипуляций &mdash; `numpy`.
 
@@ -61,11 +61,11 @@ res.save('res.jpg')
 
 В результате из такой картинки:
 
-![Исходная каритинка](https://github.com/bibilov/refactoring/blob/main/img2.jpg)
+![Исходная каритинка](images/img2.jpg)
 
 Получается такая:
 
-![Результат](https://github.com/bibilov/refactoring/blob/main/res.jpg)
+![Результат](images/res.jpg)
 
 Это не тот результат, на который я рассчитывал, и вам предстоит много поработать с моим кодом.
 
