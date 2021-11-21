@@ -1,29 +1,38 @@
 from PIL import Image
 import numpy as np
 
-img = Image.open("img2.jpg")
-arr = np.array(img)
-a = len(arr)
-a1 = len(arr[1])
-height = 0
-while height < a:
-    width = 0
-    while width < a1:
-        s = 0
-        for n in range(height, height + 10):
-            for n0 in range(width, width + 10):
-                n1 = arr[n][n0][0]
-                n2 = arr[n][n0][1]
-                n3 = arr[n][n0][2]
-                M = int(n1) + int(n2) + int(n3)
-                s += M
-        s = int(s // 100)
-        for n in range(height, height + 10):
-            for n0 in range(width, width + 10):
-                arr[n][n0][0] = int((s // 50) * 50)/3
-                arr[n][n0][1] = int((s // 50) * 50)/3
-                arr[n][n0][2] = int((s // 50) * 50)/3
-        width = width + 10
-    height = height + 10
-res = Image.fromarray(arr)
-res.save('res.jpg')
+
+def mosaic(image, mosaic_modifier, mosaic_step):
+    img_arr = np.array(image)
+    img_height = len(img_arr)
+    img_width = len(img_arr[1])
+    height = 0
+
+    while height < img_height:
+        width = 0
+        while width < img_width:
+            avg_brightness = get_brightness(img_arr, height, width, mosaic_modifier)
+            modify_img_array(img_arr, avg_brightness, height, width, mosaic_modifier, mosaic_step)
+            width = width + mosaic_modifier
+        height = height + mosaic_modifier
+    res = Image.fromarray(img_arr)
+    res.save('res.jpg')
+
+
+def get_brightness(image_array, height, width, modifier):
+    brightness = 0
+    for y in range(height, height + modifier):
+        for x in range(width, width + modifier):
+            brightness += int(image_array[y][x][0]) + int(image_array[y][x][1]) + int(image_array[y][x][2])
+    return int(brightness // modifier ** 2)
+
+
+def modify_img_array(img_arr, avg_brightness, height, width, mosaic_modifier, mosaic_step):
+    for y in range(height, height + mosaic_modifier):
+        for x in range(width, width + mosaic_modifier):
+            img_arr[y][x][0] = int((avg_brightness // mosaic_step) * mosaic_step) / 3
+            img_arr[y][x][1] = int((avg_brightness // mosaic_step) * mosaic_step) / 3
+            img_arr[y][x][2] = int((avg_brightness // mosaic_step) * mosaic_step) / 3
+
+
+mosaic(Image.open("img2.jpg"), 10, 50)
