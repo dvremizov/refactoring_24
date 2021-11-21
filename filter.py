@@ -1,10 +1,17 @@
+import sys
+
 from PIL import Image
 import numpy as np
 
 
 class Mosaica:
+
     def __init__(self, mosaic_size, mosaic_gradation):
-        self.image = Image.open("img2.jpg")
+        try:
+            self.image = Image.open(input())
+        except FileNotFoundError:
+            print('Ошибка: несуществующее имя')
+            sys.exit()
         self.img_array = np.array(self.image)
         self.img_height = len(self.img_array)
         self.img_width = len(self.img_array[1])
